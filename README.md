@@ -1,4 +1,4 @@
-# Meer
+# meer
 
 A CLI utility for interacting with Datameer
 
