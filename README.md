@@ -5,6 +5,10 @@ A CLI utility for interacting with Datameer
 ## Installation
 
     gem install meer
+    
+Meer pulls the base url for what datameer to hit from environment variables, so be sure to set the location for your datameer.
+
+    export DATAMEER_URL=https://my-datameer.example.com
 
 ## Usage
 
