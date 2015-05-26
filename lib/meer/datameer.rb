@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Meer
   class Datameer
     attr_reader :uri, :user, :password 
@@ -13,7 +15,7 @@ module Meer
       if [user, password].compact.size == 2
         req.basic_auth self.user, self.password
       else
-        req['Cookie'] = File.read('.session')
+        req['Cookie'] = Session.load
       end
 
       res = @http.request(req)
@@ -36,7 +38,7 @@ module Meer
       resp = get('/browser')
       
       if resp.code.to_i == 200
-        File.open('.session', 'w') { |f| f.puts resp['set-cookie'] }
+        Session.set(resp['set-cookie'])
         puts "Logged In"
       else
         puts "Failed to log in"
@@ -55,6 +57,20 @@ module Meer
     
     def workbooks
       JSON.parse(get("/rest/workbook").body)
+    end
+    
+    module Session
+      SESSION_FILE = File.expand_path('~/.dmsession')
+      
+      def self.set(cookie)
+        FileUtils.rm_f SESSION_FILE
+        File.open(SESSION_FILE, 'w') { |f| f.puts cookie }
+        File.chmod(0400, SESSION_FILE)
+      end
+      
+      def self.load
+        File.read(SESSION_FILE) if File.exist?(SESSION_FILE)
+      end
     end
   end
 end
