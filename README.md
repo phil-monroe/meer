@@ -1,30 +1,68 @@
 # Meer
 
-TODO: Write a gem description
+A CLI utility for interacting with Datameer
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'meer'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install meer
+    gem install meer
 
 ## Usage
 
-TODO: Write usage instructions here
+``` shell
+$ meer help
+
+Commands:
+  meer csv             # outputs the CSV for a given workbook
+  meer help [COMMAND]  # Describe available commands or one specific command
+  meer login           # logs into datameer for quick access
+  meer sheets          # lists all sheets in a workbook
+  meer table           # outputs a nicely formatted table for a given workbook
+  meer workbooks       # lists all workbooks
+```
+
+First thing you will want to do is login to datameer from the CLI. This will store your session id as a file in `~/.dmsession` so that you can interact with Datameer constantly typing credentials.
+
+``` shell
+$ meer login
+username: (user.name)
+password:
+Logged In
+```
+
+Then you can start working with the data in Datameer like so
+
+``` shell
+$ meer workbook
+ - [1] /foo.wbk
+ - [2] /test.wbk
+ 
+$ meer sheets 1
+ - sheet_1
+ - sheet_2
+ - sheet_foo
+ 
+$ meer csv 1 sheet_foo
+"foo","bar","baz"
+1,2,3
+4,5,6
+7,8,9
+
+
++--------+--------+--------+
+| foo    | bar    | baz    |
++--------+--------+--------+
+| 1      | 2      | 3      |
++--------+--------+--------+
+| 4      | 5      | 6      |
++--------+--------+--------+
+| 7      | 8      | 9      |
++--------+--------+--------+
+```
+
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/meer/fork )
+1. Fork it ( https://github.com/phil-monroe/meer/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
