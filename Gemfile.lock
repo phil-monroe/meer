@@ -4,6 +4,7 @@ PATH
     meer (0.0.1)
       bundler (~> 1.7)
       highline
+      rake (~> 10.0)
       terminal-table
       thor
 
@@ -20,4 +21,3 @@ PLATFORMS
 
 DEPENDENCIES
   meer!
-  rake (~> 10.0)

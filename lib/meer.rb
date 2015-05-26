@@ -1,7 +1,7 @@
 require "meer/version"
-require 'bundler/setup' 
-Bundler.setup(:default)
 
+require 'net/http'
+require 'uri'
 require 'json'
 require 'csv'
 require 'thor'

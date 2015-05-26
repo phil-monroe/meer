@@ -11,7 +11,6 @@ module Meer
     
     def request req
       if [user, password].compact.size == 2
-        puts "Basic Auth"
         req.basic_auth self.user, self.password
       else
         req['Cookie'] = File.read('.session')

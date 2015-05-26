@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "highline"
   spec.add_runtime_dependency "thor"
   spec.add_runtime_dependency "terminal-table"
-  spec.add_runtime_dependency "bundler", "~> 1.7"
   
   spec.add_development_dependency "rake", "~> 10.0"
 end

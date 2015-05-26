@@ -1,5 +1,4 @@
 require 'meer/datameer'
-require 'yaml'
 
 module Meer
   class CLI < ::Thor
