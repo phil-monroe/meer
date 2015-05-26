@@ -16,12 +16,12 @@ Meer pulls the base url for what datameer to hit from environment variables, so 
 $ meer help
 
 Commands:
-  meer csv             # outputs the CSV for a given workbook
-  meer help [COMMAND]  # Describe available commands or one specific command
-  meer login           # logs into datameer for quick access
-  meer sheets          # lists all sheets in a workbook
-  meer table           # outputs a nicely formatted table for a given workbook
-  meer workbooks       # lists all workbooks
+  meer csv [WORKBOOK-ID] [SHEET_NAME]    # Outputs the CSV for a given workbook
+  meer help [COMMAND]                    # Describe available commands or one specific command
+  meer login                             # Logs into datameer for quick access
+  meer sheets [WORKBOOK-ID]              # Lists all sheets in a workbook
+  meer table [WORKBOOK-ID] [SHEET_NAME]  # Outputs a nicely formatted table for a given workbook
+  meer workbooks                         # Lists all workbooks
 ```
 
 First thing you will want to do is login to datameer from the CLI. This will store your session id as a file in `~/.dmsession` so that you can interact with Datameer constantly typing credentials.
