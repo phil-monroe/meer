@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    meer (0.0.1)
+      bundler (~> 1.7)
+      highline
+      terminal-table
+      thor
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    highline (1.7.2)
+    rake (10.4.2)
+    terminal-table (1.4.5)
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  meer!
+  rake (~> 10.0)
