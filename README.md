@@ -31,7 +31,7 @@ Logged In
 
 Then you can start working with the data in Datameer like so
 
-``` shell
+``` bash
 $ meer workbook
  - [1] /foo.wbk
  - [2] /test.wbk
@@ -48,6 +48,7 @@ $ meer csv 1 sheet_foo
 7,8,9
 
 
+$ meer table 1 sheet_foo
 +--------+--------+--------+
 | foo    | bar    | baz    |
 +--------+--------+--------+
