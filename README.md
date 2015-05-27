@@ -14,12 +14,13 @@ Meer pulls the base url for what datameer to hit from environment variables, so 
 
 ``` shell
 $ meer help
-
 Commands:
   meer csv [WORKBOOK-ID] [SHEET_NAME]    # Outputs the CSV for a given workbook
   meer help [COMMAND]                    # Describe available commands or one specific command
+  meer jobs                              # Lists all currently running jobs
   meer login                             # Logs into datameer for quick access
   meer sheets [WORKBOOK-ID]              # Lists all sheets in a workbook
+  meer start [WORKBOOK-ID]               # Trigger a run of a workbook
   meer table [WORKBOOK-ID] [SHEET_NAME]  # Outputs a nicely formatted table for a given workbook
   meer workbooks                         # Lists all workbooks
 ```

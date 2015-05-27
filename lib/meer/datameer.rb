@@ -32,6 +32,11 @@ module Meer
       req = Net::HTTP::Get.new(URI(uri.to_s + url))
       request(req)
     end
+    
+    def post url
+      req = Net::HTTP::Post.new(URI(uri.to_s + url))
+      request(req)      
+    end
 
     
     def login
@@ -57,6 +62,14 @@ module Meer
     
     def workbooks
       JSON.parse(get("/rest/workbook").body)
+    end
+    
+    def run_workbook wb_id
+      JSON.parse post("/rest/job-execution?configuration=#{wb_id}").body
+    end
+    
+    def running_jobs
+      JSON.parse get("/rest/jobs/list-running").body
     end
     
     module Session

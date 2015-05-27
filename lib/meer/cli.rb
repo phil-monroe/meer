@@ -46,6 +46,29 @@ module Meer
       puts Terminal::Table.new(headings: headers, rows: rows)
     end
 
+    desc 'start [WORKBOOK-ID]', 'Trigger a run of a workbook'
+    def start(wb_id)
+      puts client.run_workbook(wb_id).to_yaml
+    end
+
+    JOB_HEADERS = %w(startTime jobStatus dapJobConfigurationId jobExecutionId progress estimateTime)
+
+    desc 'jobs', 'Lists all currently running jobs'
+    option :workbook, type: :numeric, aliases: :w
+    option :job, type: :numeric, aliases: :j
+    def jobs
+      data = client.running_jobs
+      
+      rows = if data.size > 0
+        data.select!{|r| r['dapJobConfigurationId'].to_i == options[:workbook] } if options[:workbook]
+        data.select!{|r| r['jobExecutionId'].to_i == options[:job] } if options[:job]
+        data.sort_by {|r| -r['progress'].to_i }.map { |r| JOB_HEADERS.map{|k| r[k]} }
+      else
+        []
+      end
+
+      puts Terminal::Table.new(headings: JOB_HEADERS, rows: rows)
+    end
     
     private
         
