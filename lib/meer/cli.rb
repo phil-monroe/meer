@@ -32,11 +32,13 @@ module Meer
     end
     
     desc "table [WORKBOOK-ID] [SHEET_NAME]", "Outputs a nicely formatted table for a given workbook"
-    option :sort, type: :string
+    option :sort,   type: :string
+    option :filter, type: :string
     def table(workbook, sheet)
       data = client.workbook_data(workbook, sheet)
       rows = CSV.parse(data, :headers => true).to_a
       headers = rows.slice!(0)
+      filter!(headers, rows, options[:filter]) if options[:filter]
       sort!(headers, rows, options[:sort]) if options[:sort]
       
       puts Terminal::Table.new(headings: headers, rows: rows)
@@ -48,6 +50,19 @@ module Meer
     def client user=nil, password=nil
       @client = Datameer.new ENV['DATAMEER_URL'], user, password
     end
+    
+    def filter! headers, rows, filter_str
+      cols = filter_str.split(',').map do |name| 
+        name, q = name.split('=')
+        col     = headers.find_index(name) 
+        OpenStruct.new(col: col, query: q)
+      end
+
+      rows.select! do |row|
+        cols.map{|c| row[c.col].to_s == c.query}.all?
+      end
+    end
+    
     
     def sort! headers, rows, sort_str
       cols = sort_str.split(',').map do |name| 
